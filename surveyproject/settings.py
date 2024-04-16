@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 
 # Specify the directories where Django will look for static files
 STATICFILES_DIRS = [
-    BASE_DIR /'/Dev/CMSC207/surveyproject v0.2/static/LANDING PAGE/',
+    BASE_DIR /'/Dev/CMSC207/surveyproject v0.5/static/LANDING PAGE/',
 ]
 
 # In production, specify the directory where collected static files will be stored

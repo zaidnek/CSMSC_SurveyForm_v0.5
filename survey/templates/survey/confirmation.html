@@ -15,14 +15,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'landingpage' %}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'qrcode' %}">Home</a>
         </li>
+<!--         {% if user.is_authenticated and user.is_superuser %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">(Placeholder)</a>
-        </li>
+        {% endif %} -->
       </ul>
       <ul class="navbar-nav">
         {% if request.user.is_authenticated %}
@@ -123,7 +122,7 @@
 <body>
     <div class="ThankYou">
         <div class="Rectangle1"></div>
-        <img class="DohLogo" src="{% static 'DOH_logo.png' %}">
+        <img class="DohLogo" src="{% static 'DOH_logo1.png' %}">
         <div class="Frame19">
             <div class="ThankYouText">THANK YOU!</div>
         </div>

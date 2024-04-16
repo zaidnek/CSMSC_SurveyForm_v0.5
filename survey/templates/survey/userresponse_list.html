@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load static %}
+
+<html lang="en">
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary"; style="background-color: green;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color: white;">DOH</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'qrcode' %}" style="color: white;">Home</a>
+        </li>
+        {% if user.is_authenticated and user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard' %}" style="color: white;">Dashboard</a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}" style="color: white;">Logout</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'login' %}" style="color: white;">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'register' %}" style="color: white;">Sign Up</a>
+            </li>
+        {% endif %}  
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<head>
+    <br>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <h1>UserResponse List</h1>
+</head>
+    <br>
+<body>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-11 col-xl-10">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Date</th>
+                            <th>Staff Name</th>
+                            <th>Sex</th>
+                            <th>DOH Employee</th>
+                            <th>Team Acronym</th>
+                            <th>Bureau/Region Acronym</th>
+                            <th>Activity Name</th>
+                            <th>Expectation</th>
+                            <th>Statement1 Rating</th>
+                            <th>Statement2 Rating</th>
+                            <th>Statement3 Rating</th>
+                            <th>Statement4 Rating</th>
+                            <th>Statement5 Rating</th>
+                            <th>Statement6 Rating</th>
+                            <th>Quality</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for response in responses %}
+                        <tr>
+                            <td>{{ response.id }}</td>
+                            <td>{{ response.first_name }}</td>
+                            <td>{{ response.last_name }}</td>
+                            <td>{{ response.date }}</td>
+                            <td>{{ response.staff_name }}</td>
+                            <td>{{ response.sex }}</td>
+                            <td>{{ response.doh_employee }}</td>
+                            <td>{{ response.team_acronym }}</td>
+                            <td>{{ response.bureau_service_region_acronym }}</td>
+                            <td>{{ response.activity_name }}</td>
+                            <td>{{ response.expectation }}</td>
+                            <td>{{ response.statement1_rating }}</td>
+                            <td>{{ response.statement2_rating }}</td>
+                            <td>{{ response.statement3_rating }}</td>
+                            <td>{{ response.statement4_rating }}</td>
+                            <td>{{ response.statement5_rating }}</td>
+                            <td>{{ response.statement6_rating }}</td>
+                            <td>{{ response.quality }}</td>
+                            <td>{{ response.comments }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% if is_paginated %}
+<div class="text-center">
+    <span class="step-links">
+        {% if responses.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ responses.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ responses.number }} of {{ responses.paginator.num_pages }}.
+        </span>
+
+        {% if responses.has_next %}
+            <a href="?page={{ responses.next_page_number }}">next</a>
+            <a href="?page={{ responses.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+<br><br>
+<div class="text-center">
+    <p><a href="?export=1" class="btn btn-primary">Export to Excel</a></p>
+</div>
+
+</body>
+</html>
+

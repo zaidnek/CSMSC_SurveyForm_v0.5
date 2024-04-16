@@ -1,80 +1,49 @@
-<!-- questionnaire_form.html -->
+<!DOCTYPE html>
 {% load static %}
 {% if error_message %}
-    <div class="error-message">
-        {{ error_message }}
-    </div>
+<div class="error-message">
+    {{ error_message }}
+</div>
 {% endif %}
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<!DOCTYPE html>
 <html lang="en">
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DOH</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'landingpage' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">(Placeholder)</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        {% if request.user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Sign Up</a>
-            </li>
-        {% endif %}  
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <head>
 
     <style>
-        /* Additional custom styles if needed */
+        /* Custom Styles */
         .likert {
-            text-align: center; /* Center align the radio buttons and labels */
+            text-align: center;
         }
 
         .likert label {
-            display: block; /* Make labels appear below the radio buttons */
+            display: block;
+            margin-top: 0.5rem;
+            margin-left: 2rem;
+            text-align: center;
         }
 
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1400px; /* Set your desired width */
-            }
+        .container {
+            max-width: 90%px;
         }
 
         .section-header {
-            font-weight: bold; /* Make the section headers bold */
-            font-size: inherit; /* Inherit font size from the parent */
+            font-weight: bold;
+            font-size: inherit;
+            text-align: center;
+            font-size: 2em;
+
         }
-          .square-card {
+
+        .square-card {
             position: relative;
-            width: 100%; /* Adjust the width as needed */
-            padding-top: 100%; /* Padding-top as a percentage of the width results in a square */
+            width: 100%;
+            padding-top: 100%;
         }
+
         .square-content {
             position: absolute;
             top: 0;
@@ -85,39 +54,107 @@
 
         .label {
             display: inline-block;
-            width: 200px; /* Adjust width as needed */
-            text-align: right;
+            width: 200px;
+            text-align: left;
             margin-right: 10px;
         }
+
         .header-logo {
-          display: block; /* Makes the image a block-level element */
-          margin-left: auto;
-          margin-right: auto;
-          margin-top: 20px;
-          width: 995px; /* Adjust as needed */
-          height: 212px; /* Adjust as needed */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            width: 995px;
+            height: 212px;
         }
+
         body {
-          background-image: url('{% static 'BACKGROUND MAIN.png' %}');
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          font-size: 50px;
+            background-image: url('{% static 'BACKGROUND MAIN.png' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-size: 50px;
         }
+
         .form-wide {
-          max-width: 1200px; /* Adjust the value as needed */
-          margin-left: auto;
-          margin-right: auto;
-          width: 100%;
-          margin-top: 40px; 
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            margin-top: 40px;
         }
-        {{ form.comments }} {
-          flex: 1; /* Allows the form to grow and fill the space */
-        }
+
         .form-section {
-          display: flex; /* Enables Flexbox */
-          flex-direction: column; /* Stacks children vertically */
-          width: 100%; /* Takes full width of the container */
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Styles for Radio Buttons and Labels */
+        .choice-table {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+
+        .choice-table td {
+            text-align: center;
+            padding: 0px;
+        }
+
+        .radio-input {
+            width: 1.5em;
+            height: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-label {
+            display: block;
+            margin-top: 2rem;
+            margin-left: 2rem;
+            text-align: center;
+        }
+
+        /* Styles for Jumbotron and Section Headers */
+        .jumbotron {
+            background-color: green;
+            color: #ffffff;
+            text-align: center;
+            font-size: 1em; /* Adjust the font size as needed */       
+        }
+
+        .rating-header {
+            text-align: center;
+        }
+
+        .rating-subtext {
+            display: block;
+            font-size: 0.8em;
+        }
+
+        /* Table Styles */
+        .table tbody td {
+            text-align: left;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .rating-subtext p {
+            background-color: green;
+        }
+        .bold-text {
+            font-size: 2em !important;
+            font-weight: bold !important;
+            text-align: center;
+        }
+
+        .radio-label {
+            display: block;
+            margin-top: 0.5rem;
+            margin-left: 2rem;
+            text-align: center;
         }
 
     </style>
@@ -126,83 +163,153 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/spacelab/bootstrap.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://bootswatch.com/5/spacelab/bootstrap.min.css"> -->
     <title>Questionnaire Form</title>
 </head>
+
 <body>
-  <div class="container-fluid"> <!-- Use container-fluid for full width -->
+            <!-- Navbar Content -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">DOH</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'qrcode' %}">Home</a>
+                </li>
+<!--                 {% if user.is_authenticated and user.is_superuser %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                {% endif %} -->
+              </ul>
+              <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Sign Up</a>
+                    </li>
+                {% endif %}  
+              </ul>
+            </div>
+          </div>          
+        </nav>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <img src="{% static 'DOH_logo.png' %}" alt="Logo" class="header-logo" />
+        <div class="card" style="background-color: rgba(0, 0, 0, 0.1); /* Slightly translucent white background */">
+            <div class="card-body">
+                <img src="{% static 'DOH_logo1.png' %}" alt="Logo" class="header-logo" />
+            </div>
+        </div>
 
-
-    <form method="post" class="form-wide"> <!-- Use form-wide class for 100% width -->
-        {% csrf_token %}
+        <form method="post" class="form-wide">
+            {% csrf_token %}
 
             <div class="row justify-content-center">
-                <div class="col-12"> <!-- Adjust the column sizes as needed -->
-                    <!-- Include other form fields here (first_name, last_name, date, etc.) -->
+                <div class="col-12">
 
+                    <!-- Personal Information Section -->
                     <div class="card mb-4">
                         <div class="card-body">
-                          <h4 class="card-title"></h4>
-                          <p class="card-text">
+                        <h4 class="card-title"></h4>
+                        <p class="card-text">
 
                           <h4><div class="CustomerSatisfactionSurveyFormRoutineServiceEvaluationForm" style="left: 0%; top: 0px; position: relative; text-align: center"><span style="color: #049246; font-size: 50px; font-family: Merriweather; font-weight: 700; word-wrap: break-word">CUSTOMER SATISFACTION SURVEY FORM<br></span><span style="color: #999999; font-size: 30px; font-family: Lato; font-weight: 500; word-wrap: break-word">(ROUTINE SERVICE EVALUATION FORM)</span></div></h4>
 
-                           <div class="PersonalInformation" style="left: 0px; top: 10px; position: relative; text-align: center; color: #049246; font-size: 30px; font-family: Lato; font-weight: 600; word-wrap: break-word">PERSONAL INFORMATION</div>
-                           
-                            <div style="text-align: center;">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card-text mt-4 mb-4">
-                                                <table class="table">
-                                                    <tbody style="font-size: 1em;">
-                                                        <tr>
-                                                            <td>First Name:</td>
-                                                            <td>{{ form.first_name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Last Name:</td>
-                                                            <td>{{ form.last_name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date:</td>
-                                                            <td>{{ form.date }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                           <!-- <div class="PersonalInformation" style="left: 0px; top: 10px; position: relative; text-align: center; color: #049246; font-size: 30px; font-family: Lato; font-weight: 600; word-wrap: break-word">PERSONAL INFORMATION</div> -->
+                        </p>
+                        </div>
+                    </div>
 
-                                        <div class="col-md-6">
-                                            <div class="card-text mt-4 mb-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="section-header">
+                                PERSONAL INFORMATION
+                            </div>
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card-text mt-4 mb-4">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>First Name:</td>
+                                                        <td>{{ form.first_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Last Name:</td>
+                                                        <td>{{ form.last_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Date:</td>
+                                                        <td>{{ form.date }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="card-text mt-4 mb-4">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>DOH Employee:</td>
+                                                        <td>
+                                                            {% for choice in form.doh_employee %}
+                                                                <label class="label">
+                                                                    {{ choice.tag }} {{ choice.choice_label }}
+                                                                </label>
+                                                            {% endfor %}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sex:</td>
+                                                        <td>
+                                                            {% for choice in form.sex %}
+                                                                <label class="label">
+                                                                    {{ choice.tag }} {{ choice.choice_label }}
+                                                                </label>
+                                                            {% endfor %}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10">
+                                        <div class="card-text mt-4 mb-4">
+                                            <div class="table-responsive">
                                                 <table class="table">
-                                                    <tbody style="font-size: 1em;">
+                                                    <tbody>
                                                         <tr>
                                                             <td>Name of staff who rendered the service?</td>
                                                             <td>{{ form.staff_name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>DOH Employee:</td>
-                                                                  <td>
-                                                                  {% for choice in form.doh_employee %}
-                                                                    <label style="display: inline-block; margin-right: 10px;">
-                                                                      {{ choice.tag }} {{ choice.choice_label }}
-                                                                    </label>
-                                                                  {% endfor %}
-                                                                </td>
+                                                            <td>Team (Acronym):</td>
+                                                            <td>{{ form.team_acronym }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Sex:</td>
-                                                            <td>
-                                                              {% for choice in form.sex %}
-                                                                <label style="display: inline-block; margin-right: 10px;">
-                                                                  {{ choice.tag }} {{ choice.choice_label }}
-                                                                </label>
-                                                              {% endfor %}
-                                                            </td>
+                                                            <td>Bureau/Service/Region (Acronym):</td>
+                                                            <td>{{ form.bureau_service_region_acronym }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of Activity:</td>
+                                                            <td>{{ form.activity_name }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -210,207 +317,157 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="text-align: center;">
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-6">
-                                                <div class="card-text mt-4 mb-4">
-                                                    <div style="text-align: center;">
-                                                        <table class="table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Team (Acronym):</td>
-                                                                    <td>{{ form.team_acronym }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Bureau/Service/Region (Acronym):</td>
-                                                                    <td>{{ form.bureau_service_region_acronym }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Name of Activity:</td>
-                                                                    <td>{{ form.activity_name }}</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                
                             </div>
-                          </p>
                         </div>
                     </div>
 
+
+                    <!-- Section A -->
                     <div class="card mb-4">
                         <div class="card-body">
-                          <h4 class="card-title"></h4>
-                          <p class="card-text">
-                          
-                          <table>
-                          <tr>
-                          <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                            <h1 class="bold-text display-4" style="font-size: 2em; color: #ffffff;background-color: green;">
-                              Section A: How would you rate your overall expectation of the service provider’s service?
-                            </h1>
+                            <h4 class="card-title"></h4>
+                            
+                            <div class="jumbotron jumbotron-fluid bg-green">
+                                <div class="container">
+                                    <h1 class="bold-text display-4 text-white">
+                                        Section A: How would you rate your overall expectation of the service provider’s service?
+                                    </h1>
+                                </div>
                             </div>
-                          </div></tr></table>
 
                             <div class="table-responsive">
-                              <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th class="text-center" style="font-size: 1.2em"><strong>Poor</strong></th>
-                                    <th></th> <!-- Empty cell for spacing -->
-                                    <th></th> <!-- Repeat empty cells for each rating number except 1 and 7 -->
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th class="text-center" style="font-size: 1.2em"><strong>Excellent</strong></th>
-                                  </tr>
-                                </thead>
-                                <tbody style="font-size: 1.2em">
-                                  <tr>
-                                    {% for value, label in form.expectation.field.choices %}
-                                    <td class="text-center" style="padding-left: 20px; padding-right: 40px;">
-                                      <input required type="radio" class="form-check-input" id="expectation_{{ value }}" name="{{ form.expectation.html_name }}" value="{{ value }}">
-                                      <label for="expectation_{{ value }}" style="margin-top: 0rem; margin-left: 0em;" class="form-check-label d-block">{{ value }}</label>
-                                    </td>
-                                    {% endfor %}
-                                  </tr>
-                                </tbody>
-                              </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"><strong>Poor</strong></th>
+                                            <th></th> <!-- Empty cell for spacing -->
+                                            <!-- Repeat empty cells for each rating number except 1 and 7 -->
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="text-center"><strong>Excellent</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {% for value, label in form.expectation.field.choices %}
+                                            <td class="text-center">
+                                                <input required type="radio" class="form-check-input" id="expectation_{{ value }}" name="{{ form.expectation.html_name }}" value="{{ value }}">
+                                                <label for="expectation_{{ value }}" class="form-check-label">{{ value }}</label>
+                                            </td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            </div>
-                          </p>
                         </div>
                     </div>
- 
-                     <div class="card mb-4">
-                        <div class="card-body">
-                          <h4 class="card-title"></h4>
-                          <p class="card-text">
-                            <style>
-                              .rating-header {
-                                text-align: center;
-                              }
-                              .rating-subtext {
-                                display: block;
-                                font-size: 0.8em; /* Adjust the font size as needed */
-                              }
-                              .table tbody td {
-                                text-align: left; /* Aligns the content to the left */
-                              }
-                              .rating-subtext p {
-                                background-color: green;
-                              }
-                            </style>
 
-                          <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                            <h1 class="bold-text display-4" style="font-size: 2em; color: #ffffff;background-color: green;"><b>Section B. Please show the extent to which you think the service provider and their office (if applicable)
-                            possess the features described by each statement below:</b></h1></div></div>
+
+                    <!-- Section B -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title"></h4>
+
+                            <div class="jumbotron jumbotron-fluid bg-green">
+                                <div class="container">
+                                    <h1 class="bold-text display-4 text-white">
+                                        Section B: Please show the extent to which you think the service provider and their office (if applicable) possess the features described by each statement below:
+                                    </h1>
+                                </div>
+                            </div>
+
                             <div class="table-responsive">
-                              <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th class="text-center" style="font-size: 1.5em">Statements</th>
-                                    <th class="rating-header" style="font-size: 1.2em">
-                                      Rating
-                                        <span class="rating-subtext">1 - Poor | 7 - Excellent</span>
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody style="font-size: 1.2em">
-                                  {% for field in statement_fields %}
-                                  <tr>
-                                    <td>{{ field.label }}</td>
-                                    <td>
-                                      <div class="d-flex justify-content-center">
-                                        {% for choice in field.field.choices %}
-                                        <div class="form-check">
-                                          <input required type="radio" class="form-check-input" id="{{ field.auto_id }}_{{ forloop.counter }}" name="{{ field.html_name }}" value="{{ choice.0 }}">
-                                          <label class="form-check-label d-block" for="{{ field.auto_id }}_{{ forloop.counter }}" style="margin-top: 1.30rem; margin-left: -1.3em;">
-                                            {{ choice.1 }}
-                                          </label>
-                                        </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Statements</th>
+                                            <th class="rating-header">Rating
+                                                <span class="rating-subtext">1 - Poor | 7 - Excellent</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for field in statement_fields %}
+                                        <tr>
+                                            <td>{{ field.label }}</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    {% for choice in field.field.choices %}
+                                                    <div class="form-check" style="margin-right: 1rem;">
+                                                        <input required type="radio" class="form-check-input me-2" id="{{ field.auto_id }}_{{ forloop.counter }}" name="{{ field.html_name }}" value="{{ choice.0 }}">
+                                                        <label class="form-check-label d-block" for="{{ field.auto_id }}_{{ forloop.counter }}">{{ choice.1 }}</label>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </td>
+                                        </tr>
                                         {% endfor %}
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  {% endfor %}
-                                </tbody>
-                              </table>
+                                    </tbody>
+                                </table>
                             </div>
-                            </div>
-                          </p>
                         </div>
-                    </div>                            
+                    </div>
 
-                    
-                     <div class="card mb-4">
+
+
+                    <!-- Section C -->
+                    <div class="card mb-4">
                         <div class="card-body">
-                          <h4 class="card-title"></h4>
-                          <p class="card-text">
-                            <style>
-                              .choice-table {
-                                width: 100%; /* Adjust the width as needed */
-                                margin-left: auto; /* Center the table horizontally */
-                                margin-right: auto;
-                                border-spacing: 10px; /* Add space between the cells */
-                                table-layout: fixed; /* Ensure consistent cell sizes */
-                              }
-                              .choice-table td {
-                                text-align: center; /* Center-align text within the cells */
-                                padding: 0px; /* Add padding inside the cells */
-                              }
-                            </style>
+                            <div class="jumbotron jumbotron-fluid bg-green">
+                                <div class="container">
+                                    <h1 class="bold-text display-4 text-white">
+                                        Section C: Overall, how would you rate the quality of service provided by the service provider/s?
+                                    </h1>
+                                </div>
+                            </div>
 
-                          <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                            <h1 class="bold-text display-4" style="font-size: 2em; color: #ffffff;background-color: green;"><b>Section C: Overall, how would you rate the quality of service provided by the service provider/s?</b></h1></div></div>
                             <div class="form-section">
-                              <table class="choice-table">
-                                <tr>
-                                  <!-- Assuming {{ form.quality }} renders individual cells for each choice -->
-                                  {% for choice in form.quality.field.choices %}
-                                  <td>
-                                    <input required type="radio" id="quality_{{ forloop.counter }}" name="{{ form.quality.html_name }}" value="{{ choice.0 }}">
-                                    <label for="quality_{{ forloop.counter }}" style="font-size: 1.5em">{{ choice.1 }}</label>
-                                  </td>
-                                  {% endfor %}
-                                </tr>
-                              </table>
+                                <table class="choice-table">
+                                    <tbody>
+                                        <tr>
+                                            {% for choice in form.quality.field.choices %}
+                                            <td class="text-center">
+                                                <div class="form-check" style="font-size: 1.5em; font-weight: bold; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                                    <input required type="radio" id="quality_{{ forloop.counter }}" name="{{ form.quality.html_name }}" value="{{ choice.0 }}" class="form-check-input radio-input">
+                                                    <label for="quality_{{ forloop.counter }}" class="form-check-label radio-label" style="margin-right: 3.5rem; margin-top: -0.5rem;">{{ choice.1 }}</label>
+                                                </div>
+                                            </td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                             </div>
-                          </p>
                         </div>
-                     
-                      <div class="card mb-4">
+                    </div>
+
+                    <!-- Section D -->
+                    <div class="card mb-4">
                         <div class="card-body">
-                          <h4 class="card-title"></h4>
-                          <p class="card-text">
-                            <div class="jumbotron jumbotron-fluid">
-                              <div class="container">
-                                <!-- Corrected class attribute and added style for green color -->
-                                <h1 class="bold-text display-4" style="font-size: 2em; color: #ffffff;background-color: green;">
-                                  <b>Section D: For comments, recommendations, concerns, or aspects of our service(s) that need improvement, please put it down below. If you wish for us to respond to your feedback, please include your contact details.</b>
-                                </h1>
-                              </div>
+                            <div class="jumbotron jumbotron-fluid bg-green">
+                                <div class="container">
+                                    <h1 class="bold-text display-4 text-white">
+                                        Section D: For comments, recommendations, concerns, or aspects of our service(s) that need improvement, please put it down below. If you wish for us to respond to your feedback, please include your contact details.
+                                    </h1>
+                                </div>
                             </div>
-                            <div class="form-section" >
-                              {{ form.comments }}
+                            <div class="form-section">
+                                {{ form.comments }}
                             </div>
-                          </p>
                         </div>
+                    </div>
+
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
                         <button type="submit" class="btn btn-primary" style="background-color: #04AA6D; color: white; padding: 5px 10px; font-size: 20px;">Submit</button>
-                      </div>
+                    </div><br>
 
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
+
 </html>

@@ -1,0 +1,106 @@
+/* styles.css */
+
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+.bold-text {
+    font-weight: bold; /* This will make the font bold */
+.text-size {
+  font-size: 10px; /* Sets the font size to 16 pixels */
+}
+
+form {
+    max-width: 100%; /* Set to 100% to make the form take the full width of its container */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+form h2 {
+    margin-top: 20px;
+}
+
+.button {
+    display: block;
+    margin: 0 auto; /* You missed specifying the margin value */
+}
+
+/* Additional styles for Section B */
+.section-b {
+    display: flex;
+    justify-content: space-between;
+}
+
+.likert-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap as needed */
+}
+
+.likert-statements,
+.likert-ratings {
+    flex: 1;
+}
+
+.likert-statements h3,
+.likert-ratings h3 {
+    margin-top: 0;
+}
+
+/* Custom CSS to set a specific width for form fields */
+.form-wide .form-control {
+    width: 100%; /* Set the width to 100% of the parent container */
+}
+
+/* Additional custom styles for likert */
+.likert {
+    text-align: center; /* Center align the radio buttons and labels */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ensure that the radio buttons can wrap if there isn't enough space */
+}
+
+.likert label {
+    display: block; /* Make labels appear below the radio buttons */
+    margin: 0 2px; /* Add some horizontal spacing */
+}
+.form-wide {
+    width: 100%; /* Full width of its parent */
+    /* Other styling as needed */
+}
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-options {
+  display: flex;
+}
+
+.form-options input,
+.form-options label {
+  float: left;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+/* Clear floats */
+.form-row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+}
+body {
+  background-image: url('{% static 'BACKGROUND MAIN.png' %}');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

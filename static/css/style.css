@@ -1,0 +1,225 @@
+/* styles.css */
+
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+.bold-text {
+    font-weight: bold; /* This will make the font bold */
+.text-size {
+  font-size: 10px; /* Sets the font size to 16 pixels */
+}
+
+form {
+    max-width: 100%; /* Set to 100% to make the form take the full width of its container */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+form h2 {
+    margin-top: 20px;
+}
+
+.button {
+    display: block;
+    margin: 0 auto; /* You missed specifying the margin value */
+}
+
+/* Additional styles for Section B */
+.section-b {
+    display: flex;
+    justify-content: space-between;
+}
+
+.likert-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap as needed */
+}
+
+.likert-statements,
+.likert-ratings {
+    flex: 1;
+}
+
+.likert-statements h3,
+.likert-ratings h3 {
+    margin-top: 0;
+}
+
+/* Custom CSS to set a specific width for form fields */
+.form-wide .form-control {
+    width: 100%; /* Set the width to 100% of the parent container */
+}
+
+/* Additional custom styles for likert */
+.likert {
+    text-align: center; /* Center align the radio buttons and labels */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ensure that the radio buttons can wrap if there isn't enough space */
+}
+
+.likert label {
+    display: block; /* Make labels appear below the radio buttons */
+    margin: 0 2px; /* Add some horizontal spacing */
+}
+.form-wide {
+    width: 100%; /* Full width of its parent */
+    /* Other styling as needed */
+}
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-options {
+  display: flex;
+}
+
+.form-options input,
+.form-options label {
+  float: left;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+/* Clear floats */
+.form-row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+}
+body {
+  background-image: url('{% static 'BACKGROUND MAIN.png' %}');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* style.css file*/
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    text-align: center;
+    background: rgb(128 0 0 / 66%);
+}
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 5px;
+}
+
+.container h1 {
+    color: #ffffff;
+}
+
+.section {
+    background-color: #ffffff;
+    padding: 50px 30px;
+    border: 1.5px solid #b2b2b2;
+    border-radius: 0.25em;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.25);
+}
+
+#my-qr-reader {
+    padding: 20px !important;
+    border: 1.5px solid #b2b2b2 !important;
+    border-radius: 8px;
+}
+
+#my-qr-reader img[alt="Info icon"] {
+    display: none;
+}
+
+#my-qr-reader img[alt="Camera based scan"] {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+button {
+    padding: 10px 20px;
+    border: 1px solid #b2b2b2;
+    outline: none;
+    border-radius: 0.25em;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background-color: #008000ad;
+    transition: 0.3s background-color;
+}
+
+button:hover {
+    background-color: #008000;
+}
+
+#html5-qrcode-anchor-scan-type-change {
+    text-decoration: none !important;
+    color: #1d9bf0;
+}
+
+video {
+    width: 100% !important;
+    border: 1px solid #b2b2b2 !important;
+    border-radius: 0.25em;
+}
+/* Custom styles for UserResponse List */
+
+/* Style for table headers */
+.table-dark th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* Style for table rows */
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Pagination styles */
+.pagination .page-item .page-link {
+    color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+h2 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.table-bordered {
+  border: 1px solid #ddd !important;
+}
+
+table caption {
+    padding: .5em 0;
+}
+
+@media screen and (max-width: 85%) {
+  table caption {
+    display: none;
+  }
+}
+
+.p {
+  text-align: center;
+  padding-top: 140px;
+  font-size: 14px;
+}
